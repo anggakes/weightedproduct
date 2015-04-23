@@ -17,32 +17,16 @@ Route::get(
 	['as'=>'karyawan.datatables',
 	'uses'=>'KaryawanController@datatables']);
 
-Route::get('karyawan/nilai/{id_lowongan}/{id_karyawan}',
-	['as'=>'karyawan.get.nilai',
-	'uses'=>'KaryawanController@getNilai']);
-
-Route::post('karyawan/nilai/{id_lowongan}/{id_karyawan}',
-	['as'=>'karyawan.post.nilai',
-	'uses'=>'KaryawanController@postNilai']);
-
 Route::resource('karyawan','KaryawanController');
 
-
 Route::get(
-	'lowongan/datatables',
-	['as'=>'lowongan.datatables',
-	'uses'=>'LowonganController@datatables']);
+	'kriteria/datatables',
+	['as'=>'kriteria.datatables',
+	'uses'=>'KriteriaController@datatables']);
 
-Route::resource('lowongan','LowonganController');
+Route::resource('kriteria','KaryawanController');
 
-Route::get(
-	'jabatan/datatables',
-	['as'=>'jabatan.datatables',
-	'uses'=>'JabatanController@datatables']);
 
-Route::resource('jabatan','JabatanController');
-
-Route::controller('lowongan/{id_lowongan}/seleksi','SeleksiJabatanController');
 
 // User
 
@@ -54,7 +38,7 @@ Route::get(
 
 Route::resource('user','UserController');
 
+Route::controller('penilaian', 'PenilaianController');
 
 Route::controller('login','Auth\Authcontroller');
-Route::controller('lowongan/{id_lowongan}/stepbystep','StepByStepController');
 Route::get('/',['as'=>'home','uses'=>'Homecontroller@index']);

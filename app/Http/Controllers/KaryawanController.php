@@ -1,37 +1,19 @@
 <?php namespace App\Http\Controllers;
 
-use App\Karyawan;
-use App\ProfilSyaratKaryawan;
 use App\Http\Requests;
-use App\Http\Requests\KaryawanRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\HttpResponse;
-use Auth;
-use App\Divisi;
+
+use App\Karyawan;
 
 class KaryawanController extends Controller {
 
-	/* 
-	|
-	|	menggunakan route model binding 
-	|	model binding di simpan di providers/RouteServiceProvider
-	|
-	*/
-	public $pendidikan = [
-		'SMA' => 1,
-		'D1' => 2,
-		'D2' => 2,
-		'D3' => 2,
-		'S1' => 3,
-		'S2' => 4,
-		'S3' => 5,
-	];
 
 	public function index()
 	{
-		$karyawan= Karyawan::all();
-		return view('karyawan.index', compact('karyawan'));
+		
+		return view('karyawan.index');
 	}
 
 	/**
@@ -43,8 +25,7 @@ class KaryawanController extends Controller {
 	public function create()
 	{	
 
-		return view('karyawan.create')
-		->with('divisi',Divisi::lists('nama','id'));
+		return view('karyawan.create');
 	}
 
 	/**
@@ -55,13 +36,9 @@ class KaryawanController extends Controller {
 	public function store(Request $request)
 	{
 		//
-		$sk = $request->input('profil');
-		$sk['nilai_pendidikan_terakhir'] = $this->pendidikan[$sk['pendidikan_terakhir']]; 
-		$p = new ProfilSyaratKaryawan($sk);
+		
 		$karyawan = Karyawan::create($request->input('karyawan'));
-		$karyawan->profilSyaratKaryawan()->save($p);
-		//Auth::user()->articles()->save($article);
-		return redirect('karyawan');
+		return redirect()->route('karyawan.index');
 
 	}
 
@@ -83,10 +60,10 @@ class KaryawanController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($karyawan)
-	{
-		return view('karyawan.edit',compact('karyawan'))
-		->with('divisi',Divisi::lists('nama','id'));
+	public function edit($id)
+	{	
+		$karyawan = Karyawan::findOrFail($id);
+		return view('karyawan.edit')->with('karyawan',$karyawan);
 	}
 
 	/**
@@ -95,14 +72,10 @@ class KaryawanController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(Request $request, $karyawan)
+	public function update(Request $request, $id)
 	{	
-		$sk = $request->input('profil');
-		$sk['nilai_pendidikan_terakhir'] = $this->pendidikan[$sk['pendidikan_terakhir']]; 
-
+		$karyawan =Karyawan::findOrFail($id);
 		$karyawan->update($request->input("karyawan"));
-		$karyawan->profilSyaratKaryawan()->update($sk);
-
 		return redirect('karyawan');
 	}
 
@@ -112,9 +85,10 @@ class KaryawanController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($karyawan)
+	public function destroy($id)
 	{
 		//
+		$karyawan = Karyawan::findOrFail($id);
 		$karyawan->delete();
 		return redirect()->route('karyawan.index');
 	}
@@ -144,29 +118,17 @@ class KaryawanController extends Controller {
 		$l=array();
 		$i=0;
 		foreach ($karyawan as $value) {
-			$aksi_admin = (Auth::user()->roles != 'admin') ?
-			"" :
-			"<a href='".route('karyawan.edit',$value->id)."' >Edit</a> - 
-			<a href='".route('karyawan.destroy',$value->id)."' data-method = 'DELETE' data-confirm='yakin untuk menghapus?' >Hapus</a> - 
-			<a href='".route('karyawan.show',$value->id)."'>Detail</a>
-			";
-			$aksi_tim_independent = (Auth::user()->roles != 'tim independent') ?
-			"" :
-			"<a href='".route('karyawan.show',$value->id)."'>Detail</a> - 
-			<a href='".route('karyawan.get.nilai',$value->id)."'>Input Nilai</a>
-			";
 
 			$l[0] = $value->nik;
 			$l[1] = $value->nama;
-			$l[2] = $value->agama;
-			$l[3] = $value->alamat;
-			$l[4] = $value->profilSyaratKaryawan->pendidikan_terakhir;
-
-			$l[5] =$value->lamaBekerja()." tahun";
-			$l[6] = $value->profilSyaratKaryawan->divisi->nama;
-			$l[7] = "
-				$aksi_admin
-				$aksi_tim_independent
+			$l[2] = $value->jenis_kelamin;
+			$l[3] = $value->tempat_lahir." / ".$value->tanggal_lahir;
+			$l[4] = $value->no_hp;
+			$l[5] = $value->alamat;
+			$l[6] = "
+			<a href='".route('karyawan.edit',$value->id)."' >Edit</a> - 
+			<a href='".route('karyawan.destroy',$value->id)."' data-method = 'DELETE' data-confirm='yakin untuk menghapus?' >Hapus</a> - 
+			<a href='".route('karyawan.show',$value->id)."'>Detail</a>
 				";
 
 			$data[$i]=$l;

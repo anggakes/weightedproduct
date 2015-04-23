@@ -7,46 +7,30 @@
 			{!! Form::label('nama','Nama :') !!}
 			{!! Form::text('karyawan[nama]',@$karyawan->nama,['class'=>'form-control']) !!}
 		</div>
-
 		<div class="form-group">
-			{!! Form::label('agama','Agama :') !!}
-			{!! Form::select('karyawan[agama]',[
-				'islam'=>'Islam',
-				'khatolik'=>'Khatolik',
-				'protestan'=>'Protestan',
-				'hindu'=>'Hindu',
-				'budha'=>'Budha',
-				'konghuchu'=>'Konghuchu',
-				'lainnya'=>'Lainnya'
-			],@$karyawan->agama,['class'=>'form-control']) !!}
+			{!! Form::label('ttl','Tempat/Tanggal Lahir :') !!}
+			{!! Form::text('karyawan[tempat_lahir]',@$karyawan->tempat_lahir,['class'=>'form-control']) !!} / 
+			{!! Form::input('date','karyawan[tanggal_lahir]',@$karyawan->tanggal_lahir,['class'=>'form-control']) !!}
 		</div>
 
+		<div class="form-group">
+			{!! Form::label('jenis_kelamin','Jenis Kelamin :') !!}
+			{!! Form::select('karyawan[jenis_kelamin]',[
+				'laki-laki'=>'Laki-Laki',
+				'perempuan'=>'Perempuan',
+			],@$karyawan->jenis_kelamin,['class'=>'form-control']) !!}
+		</div>
+		<div class="form-group">
+			{!! Form::label('hp','Hp :') !!}
+			{!! Form::text('karyawan[no_hp]',@$karyawan->no_hp,['class'=>'form-control']) !!}
+		</div>
+		<div class="form-group">
+			{!! Form::label('tahun_masuk','Tanggal Masuk Kerja:') !!}
+			{!! Form::input('date','karyawan[tahun_masuk]',@$karyawan->tahun_masuk,['class'=>'form-control']) !!}
+		</div>
 		<div class="form-group">
 			{!! Form::label('alamat','Alamat :') !!}
 			{!! Form::textarea('karyawan[alamat]',@$karyawan->alamat,['class'=>'form-control']) !!}
-		</div>
-		
-		<div class="form-group">
-			{!! Form::label('pendidikan_terakhir','Pendidikan Terakhir :') !!}
-			{!! Form::select('profil[pendidikan_terakhir]',
-				[
-					'SMA'=>'SMA',
-					'D1'=>'D1',
-					'D2'=>'D2',
-					'D3'=>'D3',
-					'S1'=>'S1',
-					'S2'=>'S2',
-					'S3'=>'S3',
-				]
-			,@$karyawan->profilSyaratKaryawan->pendidikan_terakhir,['class'=>'form-control']) !!}
-		</div>
-		<div class="form-group">
-			{!! Form::label('tahun_masuk_kerja','Tanggal Masuk Kerja :') !!}
-			{!! Form::input('date','profil[tgl_masuk_kerja]',@$karyawan->profilSyaratKaryawan->tgl_masuk_kerja,['class'=>'form-control']) !!}
-		</div>
-		<div class="form-group">
-			{!! Form::label('nama','Divisi :') !!}
-			{!! Form::select('profil[id_divisi]',$divisi,@$karyawan->profilSyaratKaryawan->id_divisi,['class'=>'form-control']) !!}
 		</div>
 
 		<div class="form-group">
