@@ -5,7 +5,7 @@
 
 <h3>Input Nilai Karyawan Periode {!! date('M')." ".date('Y') !!}</h3> <br>
 
-{!! Form::open(['url'=>'penilaian','method'=>'post'])!!}
+{!! Form::open(['url'=>'penilaian/input','method'=>'post'])!!}
 	
 	@include ('penilaian.form')
 

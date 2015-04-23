@@ -2,79 +2,47 @@
 
 @section('content')
 
-<h1>Profil Karyawan {{ $karyawan->nama }}</h1>
-<div>
-	Nik : {{ $karyawan->nik }}
-</div>
-<div>
-	Nama : {{ $karyawan->nama }}
-</div>
-<div>
-	Agama : {{ $karyawan->agama }}
-</div>
-<div>
-	Alamat : {{ $karyawan->alamat }}
-</div>
-<br>
-Profil Syarat Karyawan : <br><br>
-<div>
-	Pendidikan Terakhir : {{ $karyawan->profilSyaratKaryawan->pendidikan_terakhir }}
-</div>
-<div>
-	Lama Bekerja : {{ $karyawan->lamaBekerja() }}
-</div>
-<h3>Nilai Kompetensi Inti</h3>
+<h1>Kriteria {{ $kriteria->kode." - ".$kriteria->nama }}</h1>
 
-@if(count($karyawan->nilaiKiKaryawan)>0)
-<div>
-	Integrity : {{ $karyawan->nilaiKiKaryawan->ki1 }}
-</div>
-<div>
-	Customer Service Orientation : {{ $karyawan->nilaiKiKaryawan->ki2 }}
-</div>
-<div>
-	Nindya Karya Profesional Style : {{ $karyawan->nilaiKiKaryawan->ki3 }}
-</div>
-<div>
-	Continuous Learning : {{ $karyawan->nilaiKiKaryawan->ki4 }}
-</div>
-<div>
-	Adaptability and Capability for Change : {{ $karyawan->nilaiKiKaryawan->ki5 }}
-</div>
-@else
-	Data Belum diisi
-@endif
+	<div> Kode : {!! $kriteria->kode !!} </div> 
 
+	<div> Nama : {!! $kriteria->nama !!} </div> 
 
-<h3>Nilai Kepemimpinan</h3>
+	<div> bobot : {!! $kriteria->bobot !!} </div> 
+<hr>
 
-@if(count($karyawan->nilaiKpKaryawan)>0)
-<div>
-	Interpesonal Persuasiveness Ability : {{ $karyawan->nilaiKpKaryawan->kp1 }}
-</div>
-<div>
-	Operational Problem Solving and Decision Making : {{ $karyawan->nilaiKpKaryawan->kp2 }}
-</div>
-<div>
-	Visionary Leadership : {{ $karyawan->nilaiKpKaryawan->kp3 }}
-</div>
-@else
-	Data Belum diisi
-@endif
+<table class='table'>
+<thead>
+	<th>Keterangan</th>
+	<th>Batas Atas</th>
+	<th>Batas Bawah</th>
+	<th>Nilai</th>	
+</thead>
+<tbody>
 
-<h3>Nilai Kompetensi Inti</h3>
+<?php
+	
+	$nilai_kriteria = [
+		"sangat tinggi",
+		"tinggi",
+		"cukup",
+		"rendah",
+		"sangat rendah" 
+	];
 
-@if(count($karyawan->nilaiKtKaryawan)>0)
-<div>
-	Manajemen Jasa Kontruksi : {{ $karyawan->nilaiKtKaryawan->kt1 }}
-</div>
-<div>
-	Pengoperasian Program Komputer : {{ $karyawan->nilaiKtKaryawan->kt2 }}
-</div>
+?>
 
-@else
-	Data Belum diisi
-@endif
-
+@foreach($kriteria->nilaiKriteria as $key => $nk)
+<tr>
+	<td>{!! $nilai_kriteria[$key] !!}</td>
+	<td>{!! ($nk->batas_atas==999999 OR $nk->batas_atas==-999999) ? 
+		"~" : $nk->batas_atas  !!}</td>
+	<td>{!! ($nk->batas_bawah==999999 OR $nk->batas_bawah==-999999) ? 
+		"~" : $nk->batas_bawah!!}</td>
+	<td>{!! $nk->bobot !!}</td>
+</tr>
+@endforeach
+</tbody>
+</table>
 @stop
 

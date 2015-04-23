@@ -1,12 +1,12 @@
 @extends('template.backend')
 
 @section('content')
-<h1>Tambah Karyawan Baru</h1>
+<h1>Tambah Kriteria Baru</h1>
 <hr/>
 
-	{!! Form::open(['url'=>'karyawan']) !!}
+	{!! Form::open(['url'=>'kriteria']) !!}
 
-		@include('karyawan.form',['submitButtonText'=>'Tambah Karyawan'])
+		@include('kriteria.form',['submitButtonText'=>'Tambah Kriteria'])
 	
 	{!! Form::close() !!}
 

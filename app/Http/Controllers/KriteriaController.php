@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\HttpResponse;
 
+use DB;
+use App\Kriteria;
+
 class KriteriaController extends Controller {
 
 	/**
@@ -16,7 +19,9 @@ class KriteriaController extends Controller {
 	public function index()
 	{
 		//
-		return view('karyawan.index');
+		$kriteria = Kriteria::all();
+		return view('kriteria.index')
+		->with('kriteria',$kriteria);
 	}
 
 	/**
@@ -26,7 +31,8 @@ class KriteriaController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		// under construction
+		return view('kriteria.create');
 	}
 
 	/**
@@ -34,9 +40,26 @@ class KriteriaController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		// under construction
+		DB::transaction(function()use($request){
+			
+			$kriteria = Kriteria::create($request->input('kriteria'));
+			$insert = array();
+			foreach ($request->input('nilai_kriteria') as $key => $value) {
+				$insert []= [
+					'id_kriteria' => $kriteria->id,
+					'bobot' => $key,
+					'batas_atas' => $value['batas_atas'],
+					'batas_bawah' => $value['batas_bawah']
+				];
+			}
+			
+			;
+		});
+		
+		
 	}
 
 	/**
@@ -48,6 +71,9 @@ class KriteriaController extends Controller {
 	public function show($id)
 	{
 		//
+		$kriteria = Kriteria::findOrFail($id);
+		return view('kriteria.show')
+		->with('kriteria',$kriteria);
 	}
 
 	/**

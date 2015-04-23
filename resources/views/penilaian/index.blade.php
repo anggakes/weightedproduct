@@ -2,6 +2,10 @@
 
 @section('content')
 
+<h3>Nilai Karyawan Periode {!! date('M')." ".date('Y') !!}</h3> 
+<a href="{!! url('penilaian/input') !!}" class='btn btn-primary pull-right'> Input nilai</a>
+<a href="" class='btn btn-primary pull-right'> History</a>
+<div class='clearfix'></div><br>
 	<table class='table table-bordered' >
 	<thead style='background:#ccc'>
 	<tr>
@@ -26,7 +30,7 @@
 			Year(tanggal)=$tanggal[year] AND 
 			Month(tanggal)=$tanggal[month] AND 
 			id_karyawan=$karyawan->id AND 
-			id_kriteria=$kriteria->id")->first()
+			kode_kriteria='$kriteria->kode'")->first()
 		 ?>
 		{!! $nilai->nilai !!}
 		</td>

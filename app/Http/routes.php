@@ -24,7 +24,7 @@ Route::get(
 	['as'=>'kriteria.datatables',
 	'uses'=>'KriteriaController@datatables']);
 
-Route::resource('kriteria','KaryawanController');
+Route::resource('kriteria','KriteriaController');
 
 
 

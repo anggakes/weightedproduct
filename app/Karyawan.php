@@ -23,4 +23,12 @@ class Karyawan extends Model {
 		'tahun_masuk'
 	];
 
+	public function lamaBekerja(){
+			$masuk = new DateTime($this->tahun_masuk);
+			$keluar = new DateTime(date('Y-m-d'));
+
+			$lama_kerja = $masuk->diff($keluar)->y;
+
+			return $lama_kerja;
+	}
 }

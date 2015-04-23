@@ -12,4 +12,8 @@ class Kriteria extends Model {
 		'kode',
 		'bobot'
 	];
+
+	public function nilaiKriteria(){
+		return $this->hasMany('App\NilaiKriteria', 'id_kriteria');
+	}
 }

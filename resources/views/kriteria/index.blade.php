@@ -1,24 +1,30 @@
 @extends('template.backend')
 
 @section('content')
- <a class="btn btn-primary pull-right" id="sign"  href="{!! route('karyawan.create') !!}"><i class="icon-g-circle-plus"></i>Tambah</a>
-<h1>Karyawan</h1>
+
+<h1>Kriteria</h1>
 
 <hr>
-    <table class='table datatables'>
+    <table class='table '>
         <thead>
         <tr>
-          <th>NIK</th>
-          <th>Nama</th>
-          <th>Jenis Kelamin</th>
-          <th>Tempat/Tanggal Lahir</th>
-          <th>No Hp</th>
-          <th>Alamat</th>
-          <th>#</th>
+          <th>Kode</th>
+          <th>Nama Kriteria</th>
+          <th>Bobot</th>
+          <th>Aksi</th>
+          
         </tr>
         </thead>
         <tbody>
-          
+          @foreach($kriteria as $kriteria)
+        <tr>
+        
+          <th>{!! $kriteria->kode !!}</th>
+          <th>{!! $kriteria->nama !!}</th>
+          <th>{!! $kriteria->bobot !!}</th>
+          <th><a href="{!! route('kriteria.show',$kriteria->id) !!}">Ubah Nilai</a></th>
+        </tr>
+          @endforeach
         </tbody>
     </table>
 @stop
@@ -31,15 +37,6 @@
 
     $(document).ready(function(){
 
-          $(".datatables").dataTable({
-              "ajax" : "{!! route('karyawan.datatables') !!}"
-            }).on("draw.dt",function(){
-              //inisialisi saat datatables setelah load
-                   $('a[data-method]').click(function(e){
-                      handleMethod(e,$(this));
-                      e.preventDefault();
-                   });
-            }); 
 
     });
      
