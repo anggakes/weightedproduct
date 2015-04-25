@@ -27,8 +27,8 @@
 	@foreach ($kriterias as $k => $kriteria) 
 		<td>
 		<?php $nilai = $penilaian->select('nilai')->whereRaw("
-			Year(tanggal)=$tanggal[year] AND 
-			Month(tanggal)=$tanggal[month] AND 
+			Year(periode)=$tanggal[year] AND 
+			Month(periode)=$tanggal[month] AND 
 			id_karyawan=$karyawan->id AND 
 			kode_kriteria='$kriteria->kode'")->first()
 		 ?>

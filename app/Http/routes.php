@@ -39,6 +39,7 @@ Route::get(
 Route::resource('user','UserController');
 
 Route::controller('penilaian', 'PenilaianController');
+Route::controller('laporan', 'LaporanController');
 
 Route::controller('login','Auth\Authcontroller');
 Route::get('/',['as'=>'home','uses'=>'Homecontroller@index']);

@@ -31,4 +31,9 @@ class Karyawan extends Model {
 
 			return $lama_kerja;
 	}
+
+	public function penilaian (){
+
+		return $this->hasMany('App\Penilaian', 'id_karyawan');
+	}
 }
