@@ -3,11 +3,11 @@
 @section('content')
 
 
-<h3>Input Nilai</h3> <br>
+<h3>Edit Nilai</h3> <br>
 
 {!! Form::open(['url'=>'penilaian/input','method'=>'post'])!!}
 	
-	@include ('penilaian.form')
+	@include ('penilaian.editform')
 
 {!! Form::submit("Simpan",['class'=>'btn btn-primary form-control']) !!}
 {!! Form::close() !!}

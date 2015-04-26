@@ -1,3 +1,28 @@
+<?php 
+// hmm ribet nn di definisiin disini, mungkin nanti ada cara lebih baik
+
+$m = [
+  '01' => 'Januari',
+  '02' => 'Februari',
+  '03' => 'Maret',
+  '04' => 'April',
+  '05' => 'Mei',
+  '06' => 'Juni',
+  '07' => 'Juli',
+  '08' => 'Agustus',
+  '09' => 'September',
+  '10' => 'Oktober',
+  '11' => 'November',
+  '12' => 'Desember',
+];
+
+$y = array();
+for($tahun=date('Y');$tahun>=2010;$tahun--){
+  $y[$tahun] = $tahun;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,16 +97,40 @@
         @if(Auth::check())
         <li><a href="{!! url("/")!!}"><i class="icon-home"></i><span>Home</span> </a> </li>
         @if(Auth::user()->roles == 'admin')
-        <li><a href="{!! route("user.index")!!}"><i class="icon-user"></i><span>Manajemen User</span> </a> </li>
-        <li><a href="{!! route("jabatan.index")!!}"><i class="icon-briefcase"></i><span>Jabatan</span> </a> </li>
-         <li><a href="{!! route("karyawan.index")!!}"><i class="icon-list-alt"></i><span>Karyawan</span> </a> </li>
-       
+        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i><span>Manajemen Pengguna</span> <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a id="sign" href="{!! route('user.create') !!}"  data-toggle="modal" data-target="#myModal"><i class="icon-plus-sign"></i>Tambah</a></li>
+            <li><a href="{!! route("user.index")!!}" href="{!! route('user.create') !!}"><i class="icon-user"></i><span>Manajemen User</span> </a> </li>
+          </ul>
+        </li>
+
+        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-briefcase"></i><span>Karyawan</span> <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a id="sign" href="{!! route('karyawan.create') !!}"  ><i class="icon-plus-sign"></i>Tambah </a></li>
+            <li><a href="{!! route("karyawan.index")!!}" href="{!! route('user.create') !!}"><i class="icon-user"></i><span>Manajemen Karyawan</span> </a> </li>
+          </ul>
+        </li>
+        @else
+
+         <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-edit"></i><span>Penilaian</span> <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a id="sign" href="{!! url('penilaian/input') !!}"  ><i class="icon-plus-sign"></i>Input Nilai </a></li>
+            <li><a href="{!! url("penilaian")!!}" href="{!! route('user.create') !!}"><i class="icon-user"></i><span>Histori Penilaian</span> </a> </li>
+          </ul>
+        </li>
+
+        <li><a href="{!! url('laporan') !!}"><i class="icon-table"></i><span>Laporan</span> </a> </li>
+          
+        </li>
+
         @endif
 
-        <li><a href="{!! route("lowongan.index")!!}"><i class="icon-star"></i><span>Lowongan Jabatan</span> </a> </li>       
+
+               
         
         @endif
       </ul>
+
     </div>
     <!-- /container --> 
   </div>
@@ -98,6 +147,7 @@
  <div class="span12">
     <div class="widget widget-nopad" >
             <div class="widget-header"> 
+              <span class=' pull-right' style='font-size:14pt; margin-right:20px'>Periode Sekarang : {!! $m[date('m')].' '.$y[date('Y')] !!}</span>
             </div>
             <!-- /widget-header -->
             <div class="widget-content" style='min-height: 300px'>

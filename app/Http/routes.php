@@ -26,6 +26,7 @@ Route::get(
 
 Route::resource('kriteria','KriteriaController');
 
+Route::get('stepbystep','StepByStepController@getVectors');
 
 
 // User

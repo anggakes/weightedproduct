@@ -23,8 +23,8 @@ for($tahun=date('Y');$tahun>=2010;$tahun--){
 
 ?>
 Periode : 
-{!! Form::select('m',$m,date('m'),['class'=>'form-control']) !!}
-{!! Form::select('y',$y,date('Y'),['class'=>'form-control']) !!}
+{!! Form::select('m',$m,@$tanggal['month'],['class'=>'form-control']) !!}
+{!! Form::select('y',$y,@$tanggal['year'],['class'=>'form-control']) !!}
 
 <table class='table table-bordered' >
 <thead>
@@ -47,14 +47,13 @@ Periode :
 @foreach ($kriterias as $k => $kriteria) 
 	
 	<td>
-	<?php 
-		// cek jika sumber datanya 2 = pengalaman maka:
-		$nilai = ($kriteria->sumber_data == 2) ? 
-					$karyawan->lamaBekerja() : 0;
-		$type = ($kriteria->sumber_data == 2) ? 
-					'readonly' : '';
-	?>
-	{!! Form::text("kriteria[$kriteria->kode][]",$nilai,['class'=>'form-control ', 'style'=>'width:40px', $type]) !!}
+	<?php $nilai = $penilaian->select('nilai')->whereRaw("
+			Year(periode)=$tanggal[year] AND 
+			Month(periode)=$tanggal[month] AND 
+			id_karyawan=$karyawan->id AND 
+			kode_kriteria='$kriteria->kode'")->first()
+		 ?>
+	{!! Form::text("kriteria[$kriteria->kode][]",$nilai->nilai,['class'=>'form-control ', 'style'=>'width:40px']) !!}
 	</td>
 
 @endforeach

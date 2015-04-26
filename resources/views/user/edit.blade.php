@@ -25,8 +25,8 @@
     <div class="col-sm-6">
       {!! Form::select('roles',[
         'admin'=>'Admin',
-        'tim independent'=>'Tim Independent',
-        'top manager'=>'Top Manager'
+        'manajer'=>'Manajer',
+        'direktur'=>'Direktur'
       ],null,['class'=>'form-control', 'placeholder'=>'Hak Akses user'])!!}    
     </div>
   </div>

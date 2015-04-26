@@ -42,7 +42,7 @@
 							<div class="col-md-6">
 								<select type="password" class="form-control" name="roles">
 						<option value='admin'>admin</option>
-						<option value='tim independent'>tim independent</option>
+						<option value='manajer'>manajer</option>
 
 								</select>
 							</div>

@@ -14,4 +14,14 @@ class Penilaian extends Model {
 	public function kriteria(){
 		return $this->belongsTo('App\Karyawan','id_kriteria');
 	}
+
+	public function cek($month, $year){
+
+		$n = $this->select('nilai')->whereRaw("
+					Year(periode)=$year AND 
+					Month(periode)=$month 
+					")->get();
+
+		return (count($n)>0) ? true : false; 
+	}
 }

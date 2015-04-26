@@ -11,13 +11,13 @@ use App\Karyawan;
 use App\Libraries\WeightedProduct;
 use App\Libraries\ConvertBobotWeightedProduct;
 
-class LaporanController extends Controller {
+class StepByStepController extends Controller {
 
 	public function __construct(){
 
 	}
 
-	public function getIndex(Request $request){
+	public function getVectors(Request $request){
 
 		$month = ($request->has('m')) ? $request->input('m') : date('m');
 		$year = ($request->has('y')) ? $request->input('y') : date('Y');
@@ -60,16 +60,18 @@ if($penilaian->cek( $month, $year)){
 		
 	$wp = new WeightedProduct($kriterias, $bobot, $nilai);
 
-		$wp = $wp->make($karyawans);
+		$wp = $wp->vectorS();
 }
 
 		$batas = 15; // jumlah karyawan yang berhak menerima bonus
 
 
-		return view("laporan.index")
+		return view("stepbystep.index")
 			->with('wp', $wp)
 			->with('batas',$batas)
-			->with('periode',['m'=>$month,'y'=>$year]);
+			->with('periode',['m'=>$month,'y'=>$year])
+			->with("kriterias",$kriterias)
+			->with('karyawans',$karyawans);
 
 	}
 
