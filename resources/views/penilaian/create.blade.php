@@ -2,8 +2,12 @@
 
 @section('content')
 
+<div class="panel panel-default" >
+<div class="panel-heading">
+		<h4>Input Nilai</h4>
+</div>
 
-<h3>Input Nilai</h3> <br>
+<div class="panel-body">
 
 {!! Form::open(['url'=>'penilaian/input','method'=>'post'])!!}
 	
@@ -12,6 +16,8 @@
 {!! Form::submit("Simpan",['class'=>'btn btn-primary form-control']) !!}
 {!! Form::close() !!}
 
+				</div>
+			</div><!-- end panel -->
 @stop
 
 @section('css')

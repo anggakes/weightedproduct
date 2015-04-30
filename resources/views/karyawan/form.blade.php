@@ -9,8 +9,14 @@
 		</div>
 		<div class="form-group">
 			{!! Form::label('ttl','Tempat/Tanggal Lahir :') !!}
-			{!! Form::text('karyawan[tempat_lahir]',@$karyawan->tempat_lahir,['class'=>'form-control']) !!} / 
+			<div class='row'>
+			<div class='col-md-6'>
+			{!! Form::text('karyawan[tempat_lahir]',@$karyawan->tempat_lahir,['class'=>'form-control']) !!}
+			</div> 
+			<div class='col-md-6'>
 			{!! Form::input('date','karyawan[tanggal_lahir]',@$karyawan->tanggal_lahir,['class'=>'form-control']) !!}
+		</div>
+		</div>
 		</div>
 
 		<div class="form-group">
@@ -21,7 +27,7 @@
 			],@$karyawan->jenis_kelamin,['class'=>'form-control']) !!}
 		</div>
 		<div class="form-group">
-			{!! Form::label('hp','Hp :') !!}
+			{!! Form::label('hp','Handphone :') !!}
 			{!! Form::text('karyawan[no_hp]',@$karyawan->no_hp,['class'=>'form-control']) !!}
 		</div>
 		<div class="form-group">

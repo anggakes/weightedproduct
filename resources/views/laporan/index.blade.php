@@ -28,21 +28,30 @@ for($tahun=date('Y');$tahun>=2010;$tahun--){
 
 ?>
 
-<a href="" class='pull-right btn btn-primary'>Cetak</a> 
+<div class="panel panel-default" >
+<div class="panel-heading">
+		<h4>Laporan Penerima Bonus Karyawan</h4>
+</div>
+
+<div class="panel-body">
+
+<a href="" class='pull-right btn btn-primary'>Cetak</a>  
 @if(count($wp)>0)
-	<a href='{!! url("stepbystep")."?m=$periode[m]&y=$periode[y]"!!}' class='pull-right btn btn-primary'>Step By Step</a> 
+	<a href='{!! url("stepbystep")."?m=$periode[m]&y=$periode[y]"!!}' class='pull-right btn btn-primary' style='margin-right:5px'>Step By Step</a> 
 @endif
-<h3>Laporan Penerima Bonus Karyawan</h3>
-<br>
-{!! Form::open(['url'=>"laporan","method"=>'get'])!!}
+<div class="clearfix"></div>
+
+{!! Form::open(['url'=>"penilaian","method"=>'get',"class"=>"form-inline"])!!}
+Periode :
 {!! Form::select('m',$m,@$periode['m'],['class'=>'form-control']) !!}
+
 {!! Form::select('y',$y,@$periode['y'],['class'=>'form-control']) !!}
 
-<input type='submit' value='Tampilkan' class='form-control' />
+<input type='submit' value='Tampilkan' class='form-control btn btn-primary' />
 
 {!! Form::close()!!}
-
-
+<div class="clearfix"></div>
+<br>
 
 <table class='table'>
 <th>No.</th>
@@ -70,4 +79,7 @@ for($tahun=date('Y');$tahun>=2010;$tahun--){
 	@endif
 </tbody>
 </table>
+
+				</div>
+			</div><!-- end panel -->
 @stop

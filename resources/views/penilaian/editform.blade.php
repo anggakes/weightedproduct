@@ -22,9 +22,20 @@ for($tahun=date('Y');$tahun>=2010;$tahun--){
 }
 
 ?>
+
+<div class='row'>
+<div class='col-md-1'>
 Periode : 
-{!! Form::select('m',$m,@$tanggal['month'],['class'=>'form-control']) !!}
-{!! Form::select('y',$y,@$tanggal['year'],['class'=>'form-control']) !!}
+</div>
+<div class='col-md-2'>
+{!! Form::select('m',$m,date('m'),['class'=>'form-control ']) !!}
+</div>
+<div class='col-md-2'>
+{!! Form::select('y',$y,date('Y'),['class'=>'form-control ']) !!}
+</div>
+</div>
+<br>
+
 
 <table class='table table-bordered' >
 <thead>
@@ -46,14 +57,15 @@ Periode :
 	{!! Form::input('hidden',"id_karyawan[]",$karyawan->id,['class'=>'form-control', 'style'=>'width:40px']) !!}
 @foreach ($kriterias as $k => $kriteria) 
 	
-	<td>
+	<td><center>
 	<?php $nilai = $penilaian->select('nilai')->whereRaw("
 			Year(periode)=$tanggal[year] AND 
 			Month(periode)=$tanggal[month] AND 
 			id_karyawan=$karyawan->id AND 
 			kode_kriteria='$kriteria->kode'")->first()
 		 ?>
-	{!! Form::text("kriteria[$kriteria->kode][]",$nilai->nilai,['class'=>'form-control ', 'style'=>'width:40px']) !!}
+	{!! Form::text("kriteria[$kriteria->kode][]",$nilai->nilai,['class'=>'form-control ', 'style'=>'width:80px', 'required']) !!}
+	</center>
 	</td>
 
 @endforeach

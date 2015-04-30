@@ -1,14 +1,15 @@
 @extends('template.backend')
 
 @section('content')
+<div class="col-md-6 col-md-offset-3">
+<div class="panel panel-default " >
+<div class="panel-heading">
+		<h4>Login</h4>
+</div>
 
-<div class='row'>
-	<div class='span8'>
-		<img src="{!! asset('assets/images/gmapnk.jpg') !!}" style='width:700px' />
-	</div>
-	<div class='span3'>
-			
-				<h3>Login</h3> <hr>
+<div class="panel-body">
+
+
 				
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">
@@ -25,7 +26,7 @@
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
+							<label class="col-md-4 control-label">Username</label>
 							<div class="col-md-6">
 								<input type="text" class="form-control" name="username" value="{{ old('username') }}">
 							</div>
@@ -68,7 +69,9 @@
 							</div>
 						</div>
 					</form>
-				
-	</div>
-</div> <!-- /span 4 login -->	
-@endsection
+
+
+				</div>
+			</div><!-- end panel -->
+</div>
+@stop

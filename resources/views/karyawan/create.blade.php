@@ -1,8 +1,12 @@
 @extends('template.backend')
 
 @section('content')
-<h1>Tambah Karyawan Baru</h1>
-<hr/>
+<div class="panel panel-default " >
+<div class="panel-heading">
+    <h4>Tambah Karyawan Baru</h4>
+</div>
+
+<div class="panel-body">
 
 	{!! Form::open(['url'=>'karyawan']) !!}
 
@@ -11,5 +15,6 @@
 	{!! Form::close() !!}
 
 	@include('errors.list')
+</div></div>
 
 @stop

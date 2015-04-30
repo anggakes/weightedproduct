@@ -1,10 +1,18 @@
 @extends('template.backend')
 
 @section('content')
- <a class="btn btn-primary pull-right" id="sign"  href="{!! route('karyawan.create') !!}"><i class="icon-g-circle-plus"></i>Tambah</a>
-<h1>Karyawan</h1>
 
-<hr>
+<div class="panel panel-default " >
+<div class="panel-heading">
+    <h4>Karyawan</h4>
+</div>
+
+<div class="panel-body">
+
+ <a class="btn btn-primary pull-right" id="sign"  href="{!! route('karyawan.create') !!}"><i class="icon-g-circle-plus"></i>Tambah</a>
+
+
+<div class='clearfix'></div><br>
     <table class='table datatables'>
         <thead>
         <tr>
@@ -21,6 +29,8 @@
           
         </tbody>
     </table>
+</div>
+</div>
 @stop
 
 @section('js')

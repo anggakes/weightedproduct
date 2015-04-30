@@ -1,7 +1,0 @@
-@media print{
-
-	.subnavbar, .widget-header, #cetak, #btn1, .extra, #kanan, .alert, .lulus-syarat{
-		display: none;
-	}
-
-}

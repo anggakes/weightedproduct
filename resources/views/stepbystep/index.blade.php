@@ -2,9 +2,17 @@
 
 @section('content')
 <?php $i = 1 ?>
+
+<div class="panel panel-default" >
+<div class="panel-heading">
+		<h4>Tabel Vector S</h4>
+</div>
+
+<div class="panel-body">
+
 <a href='{!! url("laporan")."?m=$periode[m]&y=$periode[y]"!!}' class='pull-right btn btn-primary'>Selanjutnya</a> 
-<h3>Tabel Vector S</h3>
-<br>
+<div class="clearfix"></div><br>
+
 <table class='table'>
 	<th>No.</th>
 	<th>NIK</th>
@@ -32,5 +40,6 @@
 </tr>
 </tbody>
 </table>
-
+				</div>
+			</div><!-- end panel -->
 @stop

@@ -23,27 +23,34 @@ for($tahun=date('Y');$tahun>=2010;$tahun--){
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<Html lang="en">
+
 <head>
-<meta charset="utf-8">
-<title>Dashboard - Bootstrap Admin Template</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="apple-mobile-web-app-capable" content="yes">
-{!!Html::style("assets/css/bootstrap.min.css")!!}
-{!!Html::style("assets/css/bootstrap-responsive.min.css")!!}
-<!--link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
-        rel="stylesheet"-->
 
-{!!Html::style("assets/css/font-awesome.css")!!}
-{!!Html::style("assets/css/style.css")!!}
-{!!Html::style("assets/css/pages/dashboard.css")!!}
+<!-- lapro.id -->
 
-<!-- {?!!Html::script("assets/js/jquery-1.7.2.min.js")!!} -->
-{!!Html::script("assets/jquery/jquery-2.0.3.min.js")!!}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-{!!Html::script("assets/datatables/jquery.datatables.js")!!}
-{!!Html::style("assets/datatables/jquery.datatables.css")!!}
+    <title>Weighted Product</title>
+  <!-- Bootstrap Core CSS -->
+    {!!Html::style("assets/sb-admin/bower_components/bootstrap/dist/css/bootstrap.min.css")!!}
+    {!!Html::style("assets/sb-admin/bower_components/metisMenu/dist/metisMenu.min.css")!!}
+    {!!Html::style("assets/sb-admin/dist/css/sb-admin-2.css")!!}
+    {!!Html::style("assets/sb-admin/bower_components/font-awesome/css/font-awesome.min.css")!!}
+    {!!Html::style("assets/datatables/jquery.dataTables.css")!!}
+
+    <!-- Html5 Shim and Respond.js IE8 support of Html5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/Html5shiv/3.7.0/Html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 <!-- Css -->
 <style type="text/css">
 .table thead td{
@@ -59,52 +66,56 @@ for($tahun=date('Y');$tahun>=2010;$tahun--){
 
 <!-- Le Html5 shim, for IE6-8 support of Html5 elements -->
 <!--[if lt IE 9]>
-      <script src="http://Html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="http://Html5shim.googlecode.com/svn/trunk/Html5.js"></script>
     <![endif]-->
 </head>
 <body>
+<div id="wrapper">
 
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container"><a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
-                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> </a><a class="brand" href="index.html">{!!Html::image("assets/logo/nindya-01.png");!!} Sistem Informasi Kenaikan Jabatan </a>
-      <div class="nav-collapse">
-        <ul class="nav pull-right" id='kanan'>
-        @if(Auth::check())
+        <!-- Navigation -->
+        <nav id="collapseTwo" class="panel-collapse navbar navbar-default navbar-static-top collapse in" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.Html">Sistem Pendukung Keputusan - CV Intan Rezeki Agung</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                @if(Auth::check())
         
-           <li><a href="{!! route("user.index")!!}"><i class="icon-user"></i><span>{!! @Auth::user()->name!!}</span> </a> </li>
-           <li><a href="{!! url("login/logout")!!}"><span>Logout</span> </a> </li>
-        @else
+           <li><span style="margin-right:20px">Selamat datang, {!! @Auth::user()->name!!}</span>  </li>
+           <li><a  href="{!! url("login/logout")!!}" class='btn btn-danger'><span>Logout</span> </a> </li>
+             @else
           
-           <li><a href="{!! url("login")!!}"><i class="icon-user"></i><span>login</span> </a> </li>
+           <li><a class='btn btn-danger' href="{!! url("login")!!}"><i class="icon-user"></i><span>login</span> </a> </li>
 
-        @endif
-        </ul>
+            @endif
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
 
-       
-      </div>
-      <!--/.nav-collapse --> 
-    </div>
-    <!-- /container --> 
-  </div>
-  <!-- /navbar-inner --> 
-</div>
-<!-- /navbar -->
-<div class="subnavbar">
-  <div class="subnavbar-inner">
-    <div class="container">
-      <ul class="mainnav">
-        @if(Auth::check())
-        <li><a href="{!! url("/")!!}"><i class="icon-home"></i><span>Home</span> </a> </li>
+            <!-- /.navbar-static-side -->
+        </nav>
+        
+        <div class="container">
+            <div class="row " style="margin-top: 50px;margin-bottom:20px;">
+                    <center>
+                @if(Auth::check())
+        <li class="menu btn btn-outline  btn-lg dropdown"><a href="{!! url("/")!!}"><i class="fa fa-home"></i> <span>Home</span> </a> </li>
         @if(Auth::user()->roles == 'admin')
-        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i><span>Manajemen Pengguna</span> <b class="caret"></b></a>
+        <li class="menu btn btn-outline  btn-lg dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i><span> Pengguna</span> <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a id="sign" href="{!! route('user.create') !!}"  data-toggle="modal" data-target="#myModal"><i class="icon-plus-sign"></i>Tambah</a></li>
             <li><a href="{!! route("user.index")!!}" href="{!! route('user.create') !!}"><i class="icon-user"></i><span>Manajemen User</span> </a> </li>
           </ul>
         </li>
 
-        <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-briefcase"></i><span>Karyawan</span> <b class="caret"></b></a>
+        <li class="menu btn btn-outline  btn-lg dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-briefcase"></i><span>Karyawan</span> <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a id="sign" href="{!! route('karyawan.create') !!}"  ><i class="icon-plus-sign"></i>Tambah </a></li>
             <li><a href="{!! route("karyawan.index")!!}" href="{!! route('user.create') !!}"><i class="icon-user"></i><span>Manajemen Karyawan</span> </a> </li>
@@ -112,119 +123,60 @@ for($tahun=date('Y');$tahun>=2010;$tahun--){
         </li>
         @else
 
-         <li class="dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-edit"></i><span>Penilaian</span> <b class="caret"></b></a>
+         <li class="menu btn btn-outline  btn-lg dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-edit"></i><span>Penilaian</span> <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a id="sign" href="{!! url('penilaian/input') !!}"  ><i class="icon-plus-sign"></i>Input Nilai </a></li>
             <li><a href="{!! url("penilaian")!!}" href="{!! route('user.create') !!}"><i class="icon-user"></i><span>Histori Penilaian</span> </a> </li>
           </ul>
         </li>
 
-        <li><a href="{!! url('laporan') !!}"><i class="icon-table"></i><span>Laporan</span> </a> </li>
+        <li class="menu btn btn-outline  btn-lg"><a href="{!! url('laporan') !!}"><i class="icon-table"></i><span>Laporan</span> </a> </li>
           
         </li>
 
-        @endif
-
-
-               
+        @endif     
         
         @endif
-      </ul>
 
-    </div>
-    <!-- /container --> 
-  </div>
-  <!-- /subnavbar-inner --> 
-</div>
-<!-- /subnavbar -->
-
-<div class="main">
-  <div class="main-inner">
-    <div class="container">
-      <div class="row">
-
-<!-- Content pada template -->
- <div class="span12">
-    <div class="widget widget-nopad" >
-            <div class="widget-header"> 
-              <span class=' pull-right' style='font-size:14pt; margin-right:20px'>Periode Sekarang : {!! $m[date('m')].' '.$y[date('Y')] !!}</span>
+               
+                    </center>
             </div>
-            <!-- /widget-header -->
-            <div class="widget-content" style='min-height: 300px'>
-              <div class="widget big-stats-container">
-@yield('content')
-</div>
-           </div>
-         </div>
-    </div>
-<!-- akhi content pada template -->    
 
-      </div>
-      <!-- /row --> 
-    </div>
-    <!-- /container --> 
-  </div>
-  <!-- /main-inner --> 
-</div>
-<!-- /main -->
-
-<div class="extra">
-  <div class="extra-inner">
-    <div class="container">
-      <div class="row">
-                    <div class="span8">
-                        <h4>
-                            Tentang Nindya Karya</h4>
-                       
-                        <span style='color:#000'>PT. Nindya Karya (Persero) yang merupakan perusahaan BUMN Jasa Konstruksi
-saat ini beroperasi diseluruh wilayah Republik Indonesia yang terbagi kedalam lima Unit Bisnis yang terdiri dari lima kantor Divisi meliputi Aceh, Sumatera Utara, Sumatera Barat, Riau, Sumatera Selatan, Bengkulu, Lampung, Jambi, Kepulauan Riau, seluruh Kalimantan, Jawa Tengah, Jawa Timur, Bali, NTB dan NTT, seluruh Sulawesi, Maluku, Maluku Utara, Papua, Papua Barat, Jawa Barat, Banten, dan DKI Jakarta Saat ini PT. Nindya Karya (Persero) berkomitmen meningkatkan kinerja perusahaan melalui "NINDYA Reborn" berdasarkan PP Nomor 69 tahun 2012 dengan melakukan restrukturisasi perusahaan secara menyeluruh baik logo perusahaan, visi, misi, nilai-nilai dasar, budaya, bidang keuangan, organisasi, SDM dan Sistem, guna menjadi perusahaan yang cerdas berbasis pada pengetahuan dan teknologi. Komitmen ini dibangun dengan semangat tinggi untuk fokus pada pelanggan serta keinginan yang kuat untuk menghasilkan produk yang berkualitas. Peningkatan kompetensi karyawan menjadi perhatian khusus perusahaan guna menjadikan karyawan lebih unggul dan tangguh, professional pada bidangnya. </span>
-
-                    </div>
-                    <!-- /span3 -->
-                    <div class="span4">
-                        <h4>
-                            Kontak :</h4>
-                        <span style='color:#000'>
-                        <ul>
-                            <li>Telp   : 0711-9281934</li>
-                            <li>Email  : Admin@nindyakarya.co.id</li>
-                            <li>Alamat : jl.jasdjand</li>
-                            
-                        </ul>
-                      </span>
-                    </div>
-                    <!-- /span3 -->
-                    
+            <div  class="row " style="min-height:370px;">
+                  @yield('content')
+                  
+            </div>
+            
+            <div class="row ">
+               
+                <div  class="panel panel-info panel-heading text-right col-lg-12">
+                    Sistem Pendukung Keputusan - Weighted Product © 2015.
                 </div>
-      <!-- /row --> 
+                
+            </div>
+            
+        </div>
+        <!-- /#page-wrapper -->
+
     </div>
-    <!-- /container --> 
-  </div>
-  <!-- /extra-inner --> 
-</div>
-<!-- /extra -->
-<div class="footer">
-  <div class="footer-inner">
-    <div class="container">
-      <div class="row">
-        <div class="span12"> &copy; 2013 Nindya Karya - Sistem Informasi Kenaikan Jabatan </div>
-        <!-- /span12 --> 
-      </div>
-      <!-- /row --> 
-    </div>
-    <!-- /container --> 
-  </div>
-  <!-- /footer-inner --> 
-</div>
-<!-- /footer --> 
+    <!-- /#wrapper -->
+@include('modal') <!-- include modal Wrap -->
 <!-- Le javascript
 ================================================== --> 
 <!-- Placed at the end of the document so the pages load faster --> 
 
-{!!Html::script("assets/bootstrap/js/bootstrap.js")!!}
-{!!Html::script("assets/laravel/laravel.bootstrap.js")!!} 
-{!!Html::script("assets/datatables/jquery.dataTables.js")!!}
-{!!Html::script("assets/js/base.js")!!}
+ {!!Html::script("assets/sb-admin/bower_components/jquery/dist/jquery.min.js")!!}
+
+    <!-- Bootstrap Core JavaScript -->
+    {!!Html::script("assets/sb-admin/bower_components/bootstrap/dist/js/bootstrap.min.js")!!}
+
+    <!-- Metis Menu Plugin JavaScript -->
+    {!!Html::script("assets/sb-admin/bower_components/metisMenu/dist/metisMenu.min.js")!!}
+
+    <!-- Custom Theme JavaScript -->
+    {!!Html::script("assets/sb-admin/dist/js/sb-admin-2.js")!!}
+
+    {!!Html::script("assets/datatables/jquery.dataTables.js")!!}
 
 <!-- Js -->
 
@@ -238,7 +190,7 @@ saat ini beroperasi diseluruh wilayah Republik Indonesia yang terbagi kedalam li
 
 </body>
 
-</html>
+</Html>
 
 
 

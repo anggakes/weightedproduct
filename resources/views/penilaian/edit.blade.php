@@ -3,7 +3,12 @@
 @section('content')
 
 
-<h3>Edit Nilai</h3> <br>
+<div class="panel panel-default" >
+<div class="panel-heading">
+		<h4>Edit Nilai</h4>
+</div>
+
+<div class="panel-body">
 
 {!! Form::open(['url'=>'penilaian/input','method'=>'post'])!!}
 	
@@ -11,6 +16,9 @@
 
 {!! Form::submit("Simpan",['class'=>'btn btn-primary form-control']) !!}
 {!! Form::close() !!}
+
+				</div>
+			</div><!-- end panel -->
 
 @stop
 

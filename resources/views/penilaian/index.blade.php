@@ -26,22 +26,30 @@ for($tahun=date('Y');$tahun>=2010;$tahun--){
 
 ?>
 
+<div class="panel panel-default" >
+<div class="panel-heading">
+		<h4>Histori Penilaian</h4>
+</div>
+
+<div class="panel-body">
+
 <a href="" class='pull-right btn btn-primary'>Cetak</a> 
 @if($cek)
-	<a href='{!! url("penilaian/edit")."?m=$tanggal[month]&y=$tanggal[year]"!!}' class='pull-right btn btn-primary'>Edit</a> 
+	<a href='{!! url("penilaian/edit")."?m=$tanggal[month]&y=$tanggal[year]"!!}' class='pull-right btn btn-primary' style="margin-right:5px" >Edit</a> 
 @endif
-<a href="{!! url('penilaian/input') !!}" class='btn btn-primary pull-right'> Input Nilai </a>
-<h3>Penilaian</h3><br>
-{!! Form::open(['url'=>"penilaian","method"=>'get'])!!}
-History Nilai :
+<a href="{!! url('penilaian/input') !!}" class='btn btn-primary pull-right' style="margin-right:5px"> Input Nilai </a>
+
+{!! Form::open(['url'=>"penilaian","method"=>'get',"class"=>"form-inline"])!!}
+Periode laporan :
 {!! Form::select('m',$m,@$tanggal['month'],['class'=>'form-control']) !!}
+
 {!! Form::select('y',$y,@$tanggal['year'],['class'=>'form-control']) !!}
 
-<input type='submit' value='Tampilkan' class='form-control' />
+<input type='submit' value='Tampilkan' class='form-control btn btn-primary' />
 
 {!! Form::close()!!}
-
-
+<div class="clearfix"></div>
+<br>
 
 @if($cek)
 
@@ -66,7 +74,7 @@ History Nilai :
 		<td >{!! $karyawan->nama !!}</td>
 		{!! Form::input('hidden',"id_karyawan[]",$karyawan->id,['class'=>'form-control', 'style'=>'width:40px']) !!}
 	@foreach ($kriterias as $k => $kriteria) 
-		<td>
+		<td><center>
 		<?php $nilai = $penilaian->select('nilai')->whereRaw("
 			Year(periode)=$tanggal[year] AND 
 			Month(periode)=$tanggal[month] AND 
@@ -74,6 +82,7 @@ History Nilai :
 			kode_kriteria='$kriteria->kode'")->first()
 		 ?>
 		{!! $nilai->nilai !!}
+		</center>
 		</td>
 	@endforeach
 	<tr>
@@ -87,4 +96,6 @@ History Nilai :
 @endif
 
 
+				</div>
+			</div><!-- end panel -->
 @stop

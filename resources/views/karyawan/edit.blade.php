@@ -1,7 +1,13 @@
 @extends('template.backend')
 
 @section('content')
-	<h1>Edit: {!! $karyawan->nik !!} </h1>
+<div class="panel panel-default " >
+<div class="panel-heading">
+    <h4>Edit Karyawan: {!! $karyawan->nik." - ".$karyawan->nama !!}</h4>
+</div>
+
+<div class="panel-body">
+
 	{!! Form::model($karyawan, ['method'=>'PATCH','action'=>  ['KaryawanController@update',$karyawan->id]]) !!}
 		
 		@include('karyawan.form',['submitButtonText'=>'Ubah Karyawan'])
@@ -9,4 +15,5 @@
 	{!! Form::close() !!}
 
 	@include('errors.list')
+</div></div>
 @stop
