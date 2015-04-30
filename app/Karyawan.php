@@ -2,10 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
-use App\ProfilSyaratKaryawan;
-use App\NilaiKiKaryawan;
-use App\NilaiKpKaryawan;
-use App\NilaiKtKaryawan;
+use App\Penilaian;
 use DB;
 
 class Karyawan extends Model {
@@ -35,5 +32,10 @@ class Karyawan extends Model {
 	public function penilaian (){
 
 		return $this->hasMany('App\Penilaian', 'id_karyawan');
+	}
+
+	public function getDataPeriode($id){
+		return Penilaian::whereRaw("
+					id_karyawan=$id")->groupBy("periode")->get();
 	}
 }

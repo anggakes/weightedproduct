@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\HttpResponse;
 
 use App\Karyawan;
+use App\Kriteria;
+use App\Penilaian;
 
 class KaryawanController extends Controller {
 
@@ -48,10 +50,13 @@ class KaryawanController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($karyawan)
+	public function show($id)
 	{		
-		
-		return view('karyawan.show',compact('karyawan'));
+		$karyawan = Karyawan::findOrFail($id);
+		$kriteria = Kriteria::all();
+		return view('karyawan.show')
+		->with('karyawan',$karyawan)
+		->with('kriteria',$kriteria);
 	}
 
 	/**
@@ -131,6 +136,34 @@ class KaryawanController extends Controller {
 			<a href='".route('karyawan.show',$value->id)."'>Detail</a>
 				";
 
+			$data[$i]=$l;
+			$i++;
+		}
+
+		$return['data'] = $data;
+		return response()->json($return);
+	}
+
+	public function penilaianDatatables($id){
+		$karyawan = Karyawan::findOrFail($id);
+		$kriteria = Kriteria::all();
+		$data=array();
+		$l=array();
+		$i=0;
+		foreach ($karyawan->getDataPeriode($id) as $value) {
+			$tahun = substr($value->periode,0,4) ;
+			$bulan = substr($value->periode,5,2);
+			$l[0] = substr($value->periode,0,7);
+			$col = 1;
+			foreach ($kriteria as $idx => $k) {
+				$nilai = Penilaian::select('nilai')->whereRaw("
+					Year(periode)=$tahun AND 
+					Month(periode)=$bulan AND 
+					id_karyawan=$id AND 
+					kode_kriteria='$k->kode'")->first();
+				$l[$col] = $nilai->nilai; 
+				$col++;
+			}
 			$data[$i]=$l;
 			$i++;
 		}

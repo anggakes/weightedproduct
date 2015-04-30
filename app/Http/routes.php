@@ -11,11 +11,17 @@
 |
 */
 
+Route::group(["middleware"=>"auth"],function(){
 
 Route::get(
 	'karyawan/datatables',
 	['as'=>'karyawan.datatables',
 	'uses'=>'KaryawanController@datatables']);
+Route::get(
+	'karyawan/{id}/datatables',
+	['as'=>'penilaiankaryawan.datatables',
+	'uses'=>'KaryawanController@penilaianDatatables']);
+
 
 Route::resource('karyawan','KaryawanController');
 
@@ -41,6 +47,9 @@ Route::resource('user','UserController');
 
 Route::controller('penilaian', 'PenilaianController');
 Route::controller('laporan', 'LaporanController');
+
+
+});
 
 Route::controller('login','Auth\Authcontroller');
 Route::get('/',['as'=>'home','uses'=>'Homecontroller@index']);

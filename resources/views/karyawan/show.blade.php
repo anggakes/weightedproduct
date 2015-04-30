@@ -1,80 +1,80 @@
 @extends('template.backend')
 
 @section('content')
+<style type="text/css">
+	.datatables{
+		text-align:center;
+	}
+</style>
 
-<h1>Profil Karyawan {{ $karyawan->nama }}</h1>
-<div>
-	Nik : {{ $karyawan->nik }}
-</div>
-<div>
-	Nama : {{ $karyawan->nama }}
-</div>
-<div>
-	Agama : {{ $karyawan->agama }}
-</div>
-<div>
-	Alamat : {{ $karyawan->alamat }}
-</div>
-<br>
-Profil Syarat Karyawan : <br><br>
-<div>
-	Pendidikan Terakhir : {{ $karyawan->profilSyaratKaryawan->pendidikan_terakhir }}
-</div>
-<div>
-	Lama Bekerja : {{ $karyawan->lamaBekerja() }}
-</div>
-<h3>Nilai Kompetensi Inti</h3>
-
-@if(count($karyawan->nilaiKiKaryawan)>0)
-<div>
-	Integrity : {{ $karyawan->nilaiKiKaryawan->ki1 }}
-</div>
-<div>
-	Customer Service Orientation : {{ $karyawan->nilaiKiKaryawan->ki2 }}
-</div>
-<div>
-	Nindya Karya Profesional Style : {{ $karyawan->nilaiKiKaryawan->ki3 }}
-</div>
-<div>
-	Continuous Learning : {{ $karyawan->nilaiKiKaryawan->ki4 }}
-</div>
-<div>
-	Adaptability and Capability for Change : {{ $karyawan->nilaiKiKaryawan->ki5 }}
-</div>
-@else
-	Data Belum diisi
-@endif
-
-
-<h3>Nilai Kepemimpinan</h3>
-
-@if(count($karyawan->nilaiKpKaryawan)>0)
-<div>
-	Interpesonal Persuasiveness Ability : {{ $karyawan->nilaiKpKaryawan->kp1 }}
-</div>
-<div>
-	Operational Problem Solving and Decision Making : {{ $karyawan->nilaiKpKaryawan->kp2 }}
-</div>
-<div>
-	Visionary Leadership : {{ $karyawan->nilaiKpKaryawan->kp3 }}
-</div>
-@else
-	Data Belum diisi
-@endif
-
-<h3>Nilai Kompetensi Inti</h3>
-
-@if(count($karyawan->nilaiKtKaryawan)>0)
-<div>
-	Manajemen Jasa Kontruksi : {{ $karyawan->nilaiKtKaryawan->kt1 }}
-</div>
-<div>
-	Pengoperasian Program Komputer : {{ $karyawan->nilaiKtKaryawan->kt2 }}
+<div class="panel panel-default " >
+<div class="panel-heading">
+		<h4>Profil {{ $karyawan->nama }} </h4>
 </div>
 
-@else
-	Data Belum diisi
-@endif
+<div class="panel-body">
+<table class="table">
+  <tr>
+  <td>NIK : </td>
+  <td>{{$karyawan->nik}}</td>
+</tr>
+<tr>
+   <td>Nama : </td>
+  <td>{{$karyawan->nama}}</td>
+  </tr>
+  <tr>
+   <td>Jenis Kelamin : </td>
+  <td>{{$karyawan->jenis_kelamin}}</td>
+  </tr>
+  <tr>
+  <td>Tempat Lahir : </td>
+  <td> {{ $karyawan->tempat_lahir }}</td>
+  </tr>
+  <tr>
+  <td>Tanggal Lahir : </td>
+  <td> {{ $karyawan->tanggal_lahir }}</td>
+  </tr>
+  <tr>
+  <td>Nomor Hp : </td>
+  <td>{{$karyawan->no_hp}}</td>
+  </tr>
+  <tr>
+  <td>Alamat : </td>
+  <td>{{$karyawan->alamat}}</td>
+  </tr>
+</table>
 
+<h4>Histori Penilaian</h4><hr>
+
+<table class='table datatables'>
+<thead>
+	<tr>
+<td>Periode</td>
+@foreach ($kriteria as $key => $value) 
+<td>{!! $value->nama!!}</td>
+@endforeach
+	</tr>
+</thead>
+</table>
+
+</div></div>
 @stop
+
+@section('js')
+
+   
+ <script type="text/javascript">    
+
+    $(document).ready(function(){
+
+          $(".datatables").dataTable({
+              "ajax" : "{!! route('penilaiankaryawan.datatables',$karyawan->id) !!}"
+            }).on("draw.dt",function(){
+              
+            }); 
+
+    });
+     
+ </script>
+ @stop
 
