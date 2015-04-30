@@ -7,7 +7,7 @@
 </div>
 
 <div class="panel-body">
-
+<div class='col-md-6'>
 	{!! Form::open(['url'=>'karyawan']) !!}
 
 		@include('karyawan.form',['submitButtonText'=>'Tambah Karyawan'])
@@ -15,6 +15,7 @@
 	{!! Form::close() !!}
 
 	@include('errors.list')
+</div>
 </div></div>
 
 @stop

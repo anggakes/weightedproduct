@@ -7,7 +7,7 @@
 </div>
 
 <div class="panel-body">
-
+<div class='col-md-6'>
 	{!! Form::model($karyawan, ['method'=>'PATCH','action'=>  ['KaryawanController@update',$karyawan->id]]) !!}
 		
 		@include('karyawan.form',['submitButtonText'=>'Ubah Karyawan'])
@@ -15,5 +15,6 @@
 	{!! Form::close() !!}
 
 	@include('errors.list')
+</div>
 </div></div>
 @stop
