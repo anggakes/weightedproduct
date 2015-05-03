@@ -44,6 +44,9 @@ for($tahun=date('Y');$tahun>=2010;$tahun--){
     {!!Html::style("assets/sb-admin/bower_components/font-awesome/css/font-awesome.min.css")!!}
     {!!Html::style("assets/datatables/jquery.dataTables.css")!!}
 
+        <!-- Zabuto Calendar -->
+    {!!Html::style("assets/zabuto/zabuto_calendar.css")!!}
+    
     <!-- Html5 Shim and Respond.js IE8 support of Html5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -103,8 +106,10 @@ for($tahun=date('Y');$tahun>=2010;$tahun--){
         </nav>
         
         <div class="container">
-            <div class="row " style="margin-top: 50px;margin-bottom:20px;">
-                    <center>
+          <div class='row'>
+            <div class='col-md-12'style='background:url("{!! url('img/header.jpg')!!}");height:300px '>
+        <div id='menu' style='margin-top: 200px'>
+             <center>
                 @if(Auth::check())
         <li class="menu btn btn-outline  btn-lg dropdown"><a href="{!! url("/")!!}"><i class="fa fa-home"></i> <span>Home</span> </a> </li>
         @if(Auth::user()->roles == 'admin')
@@ -121,8 +126,8 @@ for($tahun=date('Y');$tahun>=2010;$tahun--){
             <li><a href="{!! route("karyawan.index")!!}" href="{!! route('user.create') !!}"><i class="icon-user"></i><span>Manajemen Karyawan</span> </a> </li>
           </ul>
         </li>
-        @else
 
+        
          <li class="menu btn btn-outline  btn-lg dropdown"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-edit"></i><span>Penilaian</span> <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a id="sign" href="{!! url('penilaian/input') !!}"  ><i class="icon-plus-sign"></i>Input Nilai </a></li>
@@ -130,6 +135,9 @@ for($tahun=date('Y');$tahun>=2010;$tahun--){
           </ul>
         </li>
 
+        @else
+
+        
         <li class="menu btn btn-outline  btn-lg"><a href="{!! url('laporan') !!}"><i class="icon-table"></i><span>Laporan</span> </a> </li>
           
         </li>
@@ -140,16 +148,37 @@ for($tahun=date('Y');$tahun>=2010;$tahun--){
 
                
                     </center>
+                  </div>
+            </div>
+          </div>
+            <div class="row " style="margin-top: 10px;margin-bottom:10px;">
+                    
             </div>
 
             <div  class="row " style="min-height:370px;">
+              <div class='col-md-3' style="min-height:370px;">
+                <div class="panel panel-default" >
+<div class="panel-heading" style='background:#d9534f;color:#fff'>
+   <h4> <i class='fa fa-calendar'></i> Kalender</h4>
+ 
+</div>
+<br>
+  <div class='col-md-12' id='my-calendar'></div>
+
+<div class="panel-body">
+
+</div></div>
+              </div>
+              <div class="col-md-9">
                   @yield('content')
+              </div>
+              
                   
             </div>
             
             <div class="row ">
                
-                <div  class="panel panel-info panel-heading text-right col-lg-12">
+                <div style='background:#d9534f;color:#fff' class="panel panel-info panel-heading text-right col-lg-12">
                     Sistem Pendukung Keputusan - Weighted Product © 2015.
                 </div>
                 
@@ -177,6 +206,7 @@ for($tahun=date('Y');$tahun>=2010;$tahun--){
     {!!Html::script("assets/sb-admin/dist/js/sb-admin-2.js")!!}
 
     {!!Html::script("assets/datatables/jquery.dataTables.js")!!}
+    {!!Html::script("assets/zabuto/zabuto_calendar.js")!!}
 
 <!-- Js -->
 
@@ -185,7 +215,11 @@ for($tahun=date('Y');$tahun>=2010;$tahun--){
     /* refresh modal u can change the text with img */
 	    refreshModal("Loading..");
 </script>
-
+<script type="application/javascript">
+    $(document).ready(function () {
+        $("#my-calendar").zabuto_calendar();
+    });
+</script>
 @yield('js')
 
 </body>

@@ -1,28 +1,18 @@
 @extends('template.backend')
 
 @section('content')
-<div class="col-md-6 col-md-offset-3">
+
 <div class="panel panel-default " >
 <div class="panel-heading">
 		<h4>Login</h4>
 </div>
 
-<div class="panel-body">
+<div class="panel-body"><br>
+<div class='row'>
 
+<div class='col-md-9'>
 
-				
-					@if (count($errors) > 0)
-						<div class="alert alert-danger">
-							
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-					@endif
-
-					<form class="" role="form" method="POST" action="{{ url('/login') }}">
+<form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="form-group">
@@ -71,7 +61,31 @@
 					</form>
 
 
+</div>
+
+<div class='col-md-3'><center>
+
+<img src="{!! url('img/loginimage.jpg')!!}" style="width:180px">
+</center>
+</div>
+
+</div>
+				
+					@if (count($errors) > 0)
+						<div class="alert alert-danger">
+							
+							<ul>
+								@foreach ($errors->all() as $error)
+									<li>{{ $error }}</li>
+								@endforeach
+							</ul>
+						</div>
+					@endif
+
+					
+
+
 				</div>
 			</div><!-- end panel -->
-</div>
+
 @stop

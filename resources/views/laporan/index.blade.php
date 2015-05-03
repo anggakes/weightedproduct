@@ -37,7 +37,7 @@ for($tahun=date('Y');$tahun>=2010;$tahun--){
 
 <a href="" class='pull-right btn btn-primary'>Cetak</a>  
 @if(count($wp)>0)
-	<a href='{!! url("stepbystep")."?m=$periode[m]&y=$periode[y]"!!}' class='pull-right btn btn-primary' style='margin-right:5px'>Step By Step</a> 
+	<a href='{!! url("konvert")."?m=$periode[m]&y=$periode[y]"!!}' class='pull-right btn btn-primary' style='margin-right:5px'>Step By Step</a> 
 @endif
 <div class="clearfix"></div>
 
@@ -66,7 +66,7 @@ Periode :
 	<td>{!! $i++ !!}</td>
 	<td>{!! $value['karyawan']->nik !!}</td>
 	<td>{!! $value['karyawan']->nama !!}</td>
-	<td>{!! $value['hasil'] !!}</td>
+	<td>{!! round($value['hasil'],3) !!}</td>
 </tr>
 @else
 	<?php break; ?>

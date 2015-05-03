@@ -47,9 +47,12 @@ if($penilaian->cek( $month, $year)){
 					Month(periode)=$month AND 
 					id_karyawan=$karyawan->id AND 
 					kode_kriteria='$kriteria->kode'")->first();
-
-				$nilai[$key][$kriteria->kode] = $n->nilai;
-
+				if(count($n)>0):
+					$nilai[$key][$kriteria->kode] = $n->nilai;
+				else:
+					$nilai[$key][$kriteria->kode] = 0;
+				endif;
+				
 			endforeach;
 			
 		endforeach;

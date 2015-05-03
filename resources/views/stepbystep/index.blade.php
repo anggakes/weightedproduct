@@ -30,13 +30,13 @@
 	<td>{!! $karyawans[$key]->nik!!}</td>
 	<td>{!! $karyawans[$key]->nama!!}</td>
 @foreach ($kriterias as $k => $kriteria) 
-	<th>{!! $value[$kriteria->kode] !!}</th>
+	<th>{!! round($value[$kriteria->kode],3) !!}</th>
 @endforeach
-	<td>{!! $value['hasil'] !!}</td>
+	<td>{!! round($value['hasil'],3) !!}</td>
 </tr>
 @endforeach
 <tr>
-<td colspan=8><center>Total</center></td><td>{!! $wp['total'] !!}</td>
+<td colspan=8><center>Total</center></td><td>{!! round($wp['total'],3) !!}</td>
 </tr>
 </tbody>
 </table>

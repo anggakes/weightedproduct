@@ -32,7 +32,8 @@ Route::get(
 
 Route::resource('kriteria','KriteriaController');
 
-Route::get('stepbystep','StepByStepController@getVectors');
+Route::get('vectors','StepByStepController@getVectors');
+Route::get('konvert','StepByStepController@getConvert');
 
 
 // User
