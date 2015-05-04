@@ -1,0 +1,6 @@
+@media print{
+
+	#collapseTwo, #menu, #noprint{
+		display: none;
+	}
+}

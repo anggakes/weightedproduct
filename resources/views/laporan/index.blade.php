@@ -1,10 +1,12 @@
+<link rel="stylesheet" href="assets/print.css" type="text/css" media="print"/>
 @extends('template.backend')
-
 @section('content')
 
 <?php $i = 1 ?>
 <?php 
 // hmm ribet nn di definisiin disini, mungkin nanti ada cara lebih baik
+
+// apaan sih lu? 
 
 $m = [
 	'01' => 'Januari',
@@ -28,18 +30,18 @@ for($tahun=date('Y');$tahun>=2010;$tahun--){
 
 ?>
 
-<div class="panel panel-default" >
+<div class="panel panel-default">
 <div class="panel-heading">
 		<h4>Laporan Penerima Bonus Karyawan</h4>
 </div>
 
 <div class="panel-body">
 
-<a href="" class='pull-right btn btn-primary'>Cetak</a>  
+<a href="" class='pull-right btn btn-primary' onclick='window.print()' id='noprint'>Cetak</a>  
 @if(count($wp)>0)
-	<a href='{!! url("konvert")."?m=$periode[m]&y=$periode[y]"!!}' class='pull-right btn btn-primary' style='margin-right:5px'>Step By Step</a> 
+	<a href='{!! url("konvert")."?m=$periode[m]&y=$periode[y]"!!}' class='pull-right btn btn-primary' style='margin-right:5px' id='noprint'>Step By Step</a> 
 @endif
-<div class="clearfix"></div>
+<div class="clearfix" id='noprint'></div>
 
 {!! Form::open(['url'=>"penilaian","method"=>'get',"class"=>"form-inline"])!!}
 Periode :
@@ -47,7 +49,7 @@ Periode :
 
 {!! Form::select('y',$y,@$periode['y'],['class'=>'form-control']) !!}
 
-<input type='submit' value='Tampilkan' class='form-control btn btn-primary' />
+<input type='submit' value='Tampilkan' class='form-control btn btn-primary' id='noprint'/>
 
 {!! Form::close()!!}
 <div class="clearfix"></div>

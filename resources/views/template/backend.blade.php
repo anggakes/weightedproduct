@@ -106,7 +106,7 @@ for($tahun=date('Y');$tahun>=2010;$tahun--){
         </nav>
         
         <div class="container">
-          <div class='row'>
+          <div class='row' id='noprint'>
             <div class='col-md-12'style='background:url("{!! url('img/header.jpg')!!}");height:300px '>
         <div id='menu' style='margin-top: 200px'>
              <center>
@@ -156,7 +156,7 @@ for($tahun=date('Y');$tahun>=2010;$tahun--){
             </div>
 
             <div  class="row " style="min-height:370px;">
-              <div class='col-md-3' style="min-height:370px;">
+              <div class='col-md-3' style="min-height:370px;" id="noprint">
                 <div class="panel panel-default" >
 <div class="panel-heading" style='background:#d9534f;color:#fff'>
    <h4> <i class='fa fa-calendar'></i> Kalender</h4>
