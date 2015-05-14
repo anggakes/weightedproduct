@@ -70,7 +70,7 @@ Periode laporan :
 
 	@foreach ($karyawans as $key => $karyawan) 
 	<tr>
-		<td >{!! $karyawan->nik !!}</td>
+		<td ><a href="{!! route('karyawan.show',$karyawan->id) !!}">{!! $karyawan->nik !!}</a></td>
 		<td >{!! $karyawan->nama !!}</td>
 		{!! Form::input('hidden',"id_karyawan[]",$karyawan->id,['class'=>'form-control', 'style'=>'width:40px']) !!}
 	@foreach ($kriterias as $k => $kriteria) 
@@ -81,7 +81,11 @@ Periode laporan :
 			id_karyawan=$karyawan->id AND 
 			kode_kriteria='$kriteria->kode'")->first()
 		 ?>
-		{!! $nilai->nilai !!}
+		@if($kriteria->sumber_data == 3)
+		{!! $penilaian->getOption((isset($nilai->nilai) ? $nilai->nilai: 0)) !!}
+		@else
+		{!! (isset($nilai->nilai) ? $nilai->nilai: 0) !!}
+		@endif
 		</center>
 		</td>
 	@endforeach

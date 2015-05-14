@@ -5,6 +5,14 @@ use Illuminate\Database\Eloquent\Model;
 class Penilaian extends Model {
 
 	//
+	public $option = [
+		'100' 	=> "Sangat Memuaskan",
+		'80' 	=> "Memuaskan",
+		'60' 	=> "Cukup",
+		'40'	=> "Kurang Memuaskan",
+		'20'	=> "Sangat Kurang Memuaskan"
+	];
+
 	protected $table ='penilaian';
 
 	public function karyawan (){
@@ -23,5 +31,10 @@ class Penilaian extends Model {
 					")->get();
 
 		return (count($n)>0) ? true : false; 
+	}
+
+	public function getOption($idx){
+		
+		return $this->option[$idx];
 	}
 }

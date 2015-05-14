@@ -39,8 +39,10 @@ class PenilaianController extends Controller {
 	public function getInput(){
 		$karyawans = Karyawan::all();
 		$kriterias = Kriteria::all();
-
+		$penilaian = new Penilaian;
+		
 		return view('penilaian.create')
+			->with('penilaian',$penilaian)
 			->with('karyawans',$karyawans)
 			->with('kriterias',$kriterias);
 	}

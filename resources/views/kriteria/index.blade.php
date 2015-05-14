@@ -22,7 +22,7 @@
           <th>{!! $kriteria->kode !!}</th>
           <th>{!! $kriteria->nama !!}</th>
           <th>{!! $kriteria->bobot !!}</th>
-          <th><a href="{!! route('kriteria.show',$kriteria->id) !!}">Ubah Nilai</a></th>
+          <th><a href="{!! route('kriteria.show',$kriteria->kode) !!}">Ubah Nilai</a></th>
         </tr>
           @endforeach
         </tbody>

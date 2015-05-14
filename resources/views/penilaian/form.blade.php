@@ -24,7 +24,7 @@ for($tahun=date('Y');$tahun>=2010;$tahun--){
 ?>
 
 <div class='row'>
-<div class='col-md-1'>
+<div class='col-md-2'>
 Periode : 
 </div>
 <div class='col-md-2'>
@@ -36,7 +36,15 @@ Periode :
 </div>
 <br>
 
-<table class='table table-bordered' >
+<style>
+.table{
+	width:1200px;
+
+}
+
+</style>
+<div class='span12' style="overflow: scroll;">
+<table class='table table-bordered' style="overflow: scroll"  >
 <thead>
 <tr>
 	<td>NIK</td>
@@ -64,7 +72,11 @@ Periode :
 		$type = ($kriteria->sumber_data == 2) ? 
 					'readonly' : '';
 	?>
-	{!! Form::text("kriteria[$kriteria->kode][]",$nilai,['class'=>'form-control ', 'style'=>'width:80px', $type, 'required']) !!}</center>
+	@if($kriteria->sumber_data==2 or $kriteria->sumber_data==1)
+	{!! Form::input('number',"kriteria[$kriteria->kode][]",$nilai,['class'=>'form-control ', 'style'=>'width:80px', $type, 'required','min'=>0,'max'=>100]) !!}
+	@else
+	{!! Form::select("kriteria[$kriteria->kode][]",$penilaian->option,$nilai,['class'=>'form-control ', 'style'=>'', $type, 'required','min'=>0,'max'=>100]) !!}</center>
+	@endif
 	</td>
 
 @endforeach
@@ -72,3 +84,4 @@ Periode :
 @endforeach
 </tbody>
 </table>
+</div>

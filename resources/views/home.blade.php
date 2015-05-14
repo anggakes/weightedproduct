@@ -56,7 +56,7 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-
+<h3>Sejarah Singkat</h3>
         <hr>
   CV Intan Rezeki Agung adalah perusahaan yang bergerak di bidang perdagangan umum dan jasa konstruksi. Seiring dengan kemajuan zaman dan menipisnya ketersediaan material kayu yang berkualitas membuka peluang usaha baru sebagai alternatif pengganti rangka atap rumah, maka pada tahun 2011 berbekal pengalaman serta didukung oleh keahlian dan keterampilan, CV Intan Rezeki Agung memasarkan dan melayani pemasangan atap baja ringan dengan merk Intan Truss.<br>
   Intan Truss terbuat dari bahan baja mutu tinggi yang berstandar internasional dengan material High Tensile G550 (Hi-Ten G550) yang dilapisi anti karat Almunium Zinc Alloy (AZ-100) sehingga lebih tahan karat. Dengan tegangan maksimum 550 Mpa dan  dalam pengerjaan teknis didukung tenaga teknis di lapangan yang berpengalaman, berkualitas dan bersertifikasi.<br>
@@ -86,7 +86,7 @@
     </div>
     <div role="tabpanel" class="tab-pane" id="messages">
 <center>
-
+<h3>Struktur Organisasi</h3><hr>
   <img src="{!! url('img/struktur organisasi intan rejeki.JPG') !!}" style='' class='col-md-12'>
 
 <br>

@@ -42,6 +42,12 @@
   <td>Alamat : </td>
   <td>{{$karyawan->alamat}}</td>
   </tr>
+  <td>Tahun Masuk : </td>
+  <td>{{$karyawan->tahun_masuk}}</td>
+  </tr>
+  <td>Lama Bekerja : </td>
+  <td>{{$karyawan->lamaBekerja()}}</td>
+  </tr>
 </table>
 
 <h4>Histori Penilaian</h4><hr>

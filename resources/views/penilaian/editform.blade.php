@@ -24,7 +24,7 @@ for($tahun=date('Y');$tahun>=2010;$tahun--){
 ?>
 
 <div class='row'>
-<div class='col-md-1'>
+<div class='col-md-2'>
 Periode : 
 </div>
 <div class='col-md-2'>
@@ -36,6 +36,14 @@ Periode :
 </div>
 <br>
 
+<style>
+.table{
+	width:1200px;
+
+}
+
+</style>
+<div class='span12' style="overflow: scroll;">
 
 <table class='table table-bordered' >
 <thead>
@@ -62,9 +70,17 @@ Periode :
 			Year(periode)=$tanggal[year] AND 
 			Month(periode)=$tanggal[month] AND 
 			id_karyawan=$karyawan->id AND 
-			kode_kriteria='$kriteria->kode'")->first()
+			kode_kriteria='$kriteria->kode'")->first();
+	$type = ($kriteria->sumber_data == 2) ? 
+					'readonly' : '';
 		 ?>
-	{!! Form::text("kriteria[$kriteria->kode][]",$nilai->nilai,['class'=>'form-control ', 'style'=>'width:80px', 'required']) !!}
+	@if($kriteria->sumber_data==1 or $kriteria->sumber_data==2)
+	
+	{!! Form::input('number',"kriteria[$kriteria->kode][]",(isset($nilai->nilai) ? $nilai->nilai: 0),['class'=>'form-control ', 'style'=>'width:70px', 'required', $type,'min'=>0,'max'=>100]) !!}
+	@else
+
+	{!! Form::select("kriteria[$kriteria->kode][]",$penilaian->option,(isset($nilai->nilai) ? $nilai->nilai: 0),['class'=>'form-control ', 'style'=>'', 'required', $type,'min'=>0,'max'=>100]) !!}
+	@endif
 	</center>
 	</td>
 
@@ -73,3 +89,4 @@ Periode :
 @endforeach
 </tbody>
 </table>
+</div>

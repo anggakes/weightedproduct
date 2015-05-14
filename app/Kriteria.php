@@ -14,6 +14,6 @@ class Kriteria extends Model {
 	];
 
 	public function nilaiKriteria(){
-		return $this->hasMany('App\NilaiKriteria', 'id_kriteria');
+		return $this->hasMany('App\NilaiKriteria', 'kode_kriteria');
 	}
 }

@@ -43,7 +43,7 @@ for($tahun=date('Y');$tahun>=2010;$tahun--){
 @endif
 <div class="clearfix" id='noprint'></div>
 
-{!! Form::open(['url'=>"penilaian","method"=>'get',"class"=>"form-inline"])!!}
+{!! Form::open(['url'=>"laporan","method"=>'get',"class"=>"form-inline"])!!}
 Periode :
 {!! Form::select('m',$m,@$periode['m'],['class'=>'form-control']) !!}
 

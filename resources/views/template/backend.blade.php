@@ -169,7 +169,7 @@ for($tahun=date('Y');$tahun>=2010;$tahun--){
 
 </div></div>
               </div>
-              <div class="col-md-9">
+              <div class="col-md-9" >
                   @yield('content')
               </div>
               

@@ -12,8 +12,8 @@
 {!! Form::open(['url'=>'penilaian/input','method'=>'post'])!!}
 	
 	@include ('penilaian.form')
-
-{!! Form::submit("Simpan",['class'=>'btn btn-primary form-control']) !!}
+<br><br>
+{!! Form::submit("Simpan",['class'=>'btn btn-primary pull-right']) !!}
 {!! Form::close() !!}
 
 				</div>
