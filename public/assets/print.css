@@ -3,4 +3,14 @@
 	#collapseTwo, #menu, #noprint{
 		display: none;
 	}
+
+	#abstrak{
+		display:inline;
+	}
+}
+
+@media screen{
+	#abstrak{
+		display:none;
+	}
 }
